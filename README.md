@@ -1,1 +1,785 @@
-# qu-t-o-i-ng-
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quả táo đi ngủ</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: #365c3b;
+    background: linear-gradient(#cce9e5, #f4f7e9);
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #f8faed;
+}
+
+.logo {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+nav a {
+    color: #426744;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+nav a:hover {
+    color: #8aaa70;
+}
+
+.hero {
+    text-align: center;
+    padding: 55px 20px;
+    background: radial-gradient(ellipse at center, #ffffffd9, #e8f2dbcc);
+}
+
+.avatar {
+    width: 190px;
+    height: 190px;
+    margin: 0 auto 25px;
+    border-radius: 50%;
+    border: 6px solid #a8c78c;
+    background: linear-gradient(#a6dce9 50%, #b8d69b 50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 95px;
+    box-shadow: 0 8px 25px #52744b30;
+}
+
+h1 {
+    font-size: clamp(35px, 6vw, 60px);
+    color: #416b42;
+    margin-bottom: 20px;
+}
+
+.intro {
+    max-width: 600px;
+    margin: auto;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.highlight {
+    color: #779b57;
+    font-weight: bold;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 35px auto;
+    max-width: 850px;
+}
+
+.card {
+    width: 230px;
+    padding: 25px 18px;
+    background: #ffffffc9;
+    border-radius: 22px;
+    border: 1px solid #dce9ce;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px #52744b25;
+}
+
+.card .icon {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #71836b;
+}
+
+.note {
+    font-style: italic;
+    line-height: 1.8;
+    margin: 25px auto 0;
+    max-width: 550px;
+    color: #648257;
+}
+
+footer {
+    text-align: center;
+    padding: 22px;
+    background: #e1edd6;
+    color: #66805d;
+    font-size: 14px;
+}
+
+/* Các trang đọc truyện */
+.page {
+    display: none;
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 25px;
+}
+
+.page.active {
+    display: block;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 25px;
+    padding: 10px 17px;
+    border: none;
+    border-radius: 20px;
+    background: #dcebd0;
+    color: #365c3b;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.back:hover {
+    background: #c6dfb4;
+}
+
+.page-title {
+    font-size: clamp(27px, 5vw, 42px);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.page-desc {
+    text-align: center;
+    color: #71836b;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Bìa tiểu thuyết */
+.book-cover {
+    width: min(100%, 370px);
+    min-height: 510px;
+    margin: 0 auto;
+    padding: 30px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    color: #fff8e9;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at 50% 25%, #c4a77c55, transparent 45%),
+        linear-gradient(145deg, #142f2c, #34594a 55%, #182d2a);
+    box-shadow: 0 15px 35px #1e403b45;
+    border: 5px double #c8b17b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s;
+}
+
+.book-cover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px #1e403b55;
+}
+
+.cover-small {
+    letter-spacing: 4px;
+    font-size: 12px;
+    color: #e3d2a5;
+}
+
+.cover-symbol {
+    font-size: 65px;
+    margin: 12px 0;
+}
+
+.cover-title {
+    font-family: Georgia, serif;
+    font-size: 34px;
+    line-height: 1.4;
+    color: #f6e4b8;
+    margin: 15px 0;
+}
+
+.cover-subtitle {
+    font-size: 13px;
+    line-height: 2;
+    color: #e4e8d8;
+}
+
+.cover-names {
+    font-size: 13px;
+    line-height: 2;
+    color: #f2dfb2;
+    margin-top: 20px;
+}
+
+.cover-hint {
+    font-size: 12px;
+    color: #d6d9c9;
+    margin-top: 20px;
+}
+
+/* Thông tin truyện */
+.info-box {
+    background: #ffffffd9;
+    border: 1px solid #dce9ce;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 25px auto;
+    max-width: 720px;
+    line-height: 1.9;
+}
+
+.info-box p {
+    margin-bottom: 10px;
+}
+
+.info-box strong {
+    color: #416b42;
+}
+
+.chapter-list {
+    max-width: 720px;
+    margin: 20px auto;
+}
+
+.chapter-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 17px 20px;
+    margin: 12px 0;
+    border: 1px solid #dce9ce;
+    border-radius: 14px;
+    background: #ffffffd9;
+    color: #365c3b;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.chapter-item:hover {
+    background: #e3efd8;
+    transform: translateX(4px);
+}
+
+/* Nội dung chương */
+.story-content {
+    background: #fffef8;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: clamp(20px, 5vw, 45px);
+    border-radius: 18px;
+    border: 1px solid #e1e8d5;
+    box-shadow: 0 8px 25px #52744b12;
+}
+
+.story-content h2 {
+    text-align: center;
+    color: #416b42;
+    font-family: Georgia, serif;
+    font-size: clamp(23px, 4vw, 32px);
+    line-height: 1.5;
+    margin-bottom: 28px;
+}
+
+.story-content p {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 2;
+    text-align: justify;
+    text-indent: 2em;
+    margin-bottom: 18px;
+    color: #39483a;
+}
+
+.end-chapter {
+    text-align: center;
+    color: #779b57;
+    margin-top: 30px;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav a {
+        margin: 0 7px;
+        font-size: 13px;
+    }
+
+    .intro {
+        font-size: 15px;
+    }
+
+    .card {
+        width: min(100%, 300px);
+    }
+
+    .page {
+        padding: 16px;
+        margin: 20px auto;
+    }
+
+    .story-content p {
+        font-size: 16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🍏 Quả táo đi ngủ</div>
+    <nav>
+        <a href="#home" onclick="showPage('home')">Trang chủ</a>
+        <a href="#about" onclick="showPage('home')">Giới thiệu</a>
+        <a href="#blog" onclick="showPage('home')">Góc nhỏ</a>
+    </nav>
+</header>
+
+<main>
+
+<!-- TRANG CHỦ -->
+<section class="hero" id="home">
+    <div class="avatar">🏡</div>
+
+    <h1>Quả táo đi ngủ 🍏</h1>
+
+    <div class="intro" id="about">
+        <p>Xin chào! Chào mừng bạn đến với
+        <span class="highlight">Quả táo đi ngủ</span>!</p>
+
+        <p>
+        Đây là một góc nhỏ xanh xanh, có ngôi nhà bé xíu,
+        vườn cây xinh xinh và một quả táo siêu lười.
+        Cứ đến giờ là táo ngáp ngắn ngáp dài,
+        chẳng thiết tha gì ngoài chiếc giường êm ái!
+        </p>
+
+        <p>
+        Ở đây không có deadline dí chạy,
+        chỉ có những câu chuyện vui, chút bình yên
+        và thật nhiều năng lượng tích cực. 🌿
+        </p>
+    </div>
+
+    <div class="cards" id="blog">
+
+        <div class="card">
+            <div class="icon">🏡</div>
+            <h3>Góc nhỏ bình yên</h3>
+            <p>Một ngôi nhà quê, một khoảng trời xanh
+            và những ngày thật nhẹ nhàng.</p>
+        </div>
+
+        <div class="card" onclick="showPage('stories')"
+             style="cursor:pointer">
+            <div class="icon">📖</div>
+            <h3>Táo kể chuyện</h3>
+            <p>Khám phá những câu chuyện thú vị,
+            gặp gỡ nhân vật và bước vào thế giới tiểu thuyết.</p>
+            <p style="margin-top:12px;color:#527b43;font-weight:bold">
+                Nhấn để khám phá →
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="icon">🌱</div>
+            <h3>Vui vẻ lớn lên</h3>
+            <p>Chậm một chút cũng được,
+            miễn là tốt hơn hôm qua.</p>
+        </div>
+
+    </div>
+
+    <div class="note">
+        “Trời xanh, gió mát, táo đã ngáp...
+        Thôi mình đi ngủ, mai lại vui!” 🌙
+    </div>
+</section>
+
+<!-- TRANG DANH SÁCH TRUYỆN -->
+<section class="page" id="stories">
+    <button class="back" onclick="showPage('home')">← Về trang chủ</button>
+
+    <h1 class="page-title">📚 Táo kể chuyện</h1>
+    <p class="page-desc">
+        Một góc nhỏ dành cho những câu chuyện tình yêu,
+        những cuộc gặp gỡ định mệnh và các bí mật chưa được bật mí.
+    </p>
+
+    <div class="book-cover" onclick="showPage('details')">
+        <div class="cover-small">TIỂU THUYẾT NGÔN TÌNH</div>
+
+        <div>
+            <div class="cover-symbol">♛</div>
+            <div class="cover-title">
+                Hai Cuộc Hôn Nhân,<br>
+                Một Gia Tộc
+            </div>
+            <div class="cover-subtitle">
+                Hai cô bạn thân · Hai anh em tài phiệt<br>
+                Bốn con người · Hai cuộc hôn nhân
+            </div>
+        </div>
+
+        <div class="cover-names">
+            HẠ AN NHIÊN · TỐNG KHẢ HÂN<br>
+            LỤC CẢNH THÂM · LỤC CẢNH DƯƠNG
+        </div>
+
+        <div class="cover-hint">NHẤN VÀO BÌA ĐỂ ĐỌC TRUYỆN</div>
+    </div>
+</section>
+
+<!-- TRANG THÔNG TIN TRUYỆN -->
+<section class="page" id="details">
+    <button class="back" onclick="showPage('stories')">← Quay lại</button>
+
+    <h1 class="page-title">Hai Cuộc Hôn Nhân, Một Gia Tộc</h1>
+    <p class="page-desc">
+        Bốn con người, hai cuộc hôn nhân và một bí mật được giấu kín nhiều năm.
+    </p>
+
+    <div class="info-box">
+        <p><strong>📖 Tên truyện:</strong> Hai Cuộc Hôn Nhân, Một Gia Tộc</p>
+
+        <p><strong>✍️ Tác giả:</strong> Quả táo đi ngủ</p>
+
+        <p><strong>🌿 Thể loại:</strong> Ngôn tình hào môn, thanh xuân học đường,
+        cưới trước yêu sau, oan gia, hài hước, sủng ngọt.</p>
+
+        <p><strong>👩 Nhân vật nữ:</strong> Hạ An Nhiên, Tống Khả Hân</p>
+
+        <p><strong>👑 Nhân vật nam:</strong> Lục Cảnh Thâm, Lục Cảnh Dương</p>
+
+        <p><strong>📝 Giới thiệu:</strong> Hai cô bạn thân từng thề sẽ không bao giờ
+        thích anh em nhà họ Lục. Trớ trêu thay, cả hai lại được gia đình sắp xếp
+        hôn ước với chính những người mà mình ghét nhất. Liệu cuộc sống sau hôn
+        nhân sẽ là địa ngục, hay là khởi đầu cho một tình yêu không ai ngờ tới?</p>
+    </div>
+
+    <h2 style="text-align:center;margin:30px 0 15px">📑 Mục lục</h2>
+
+    <div class="chapter-list">
+        <button class="chapter-item" onclick="showPage('chapter1')">
+            <strong>Chương 1:</strong> Người mà tôi ghét nhất lại muốn cưới tôi?
+            <span style="float:right">→</span>
+        </button>
+    </div>
+
+    <p class="page-desc">
+        Những chương tiếp theo sẽ được cập nhật sau. 🌙
+    </p>
+</section>
+
+<!-- NỘI DUNG CHƯƠNG 1 -->
+<section class="page" id="chapter1">
+    <button class="back" onclick="showPage('details')">← Quay lại mục lục</button>
+
+    <article class="story-content">
+        <h2>Chương 1: Người mà tôi ghét nhất lại muốn cưới tôi?</h2>
+
+        <p>Giang Thành vào đầu thu, trời xanh trong vắt, những hàng cây ngân hạnh bên đường bắt đầu chuyển sang màu vàng nhạt. Trong khuôn viên Đại học Giang Thành, sinh viên đang tranh thủ những ngày cuối cùng của kỳ nghỉ để hoàn thành thủ tục nhập học.</p>
+
+        <p>Giữa đám đông náo nhiệt, một cô gái mặc váy trắng, đeo chiếc ba lô màu xanh nhạt, vừa đi vừa cúi đầu nhìn điện thoại. Mái tóc dài buộc hờ sau gáy, gương mặt thanh tú, đôi mắt trong veo, nhìn qua có vẻ là một cô gái ngoan ngoãn, dịu dàng.</p>
+
+        <p>Đáng tiếc, vẻ ngoài đôi khi thực sự biết cách lừa người.</p>
+
+        <p>“Tống Khả Hân! Cậu đứng lại cho tớ!”</p>
+
+        <p>Tiếng hét vang lên từ phía sau khiến mấy sinh viên gần đó đồng loạt quay đầu.</p>
+
+        <p>Cô gái váy trắng lập tức bước nhanh hơn, thậm chí còn giả vờ như không nghe thấy gì.</p>
+
+        <p>Chưa kịp đi được mấy bước, một bàn tay đã túm lấy quai ba lô của cô.</p>
+
+        <p>“Hạ An Nhiên, cậu bị điên à? Giữa trường đấy!”</p>
+
+        <p>“Cậu còn biết đây là trường học cơ à?” Hạ An Nhiên thở hổn hển, tức đến mức hai má đỏ bừng. “Ai là người đã hứa sẽ đến đón tớ lúc bảy giờ sáng? Ai là người bảo hôm nay nhất định không ngủ quên? Cuối cùng ai là người để tớ đứng dưới ký túc xá chờ tận bốn mươi phút?”</p>
+
+        <p>Tống Khả Hân chớp mắt, thành thật trả lời: “Đồng hồ báo thức của tớ không kêu.”</p>
+
+        <p>“Cậu đặt báo thức bằng điện thoại hay bằng niềm tin vậy?”</p>
+
+        <p>“Bằng điện thoại. Nhưng điện thoại hết pin.”</p>
+
+        <p>“Thế sao không sạc?”</p>
+
+        <p>“Quên.”</p>
+
+        <p>Hạ An Nhiên nhìn cô bạn thân suốt mười tám năm của mình, cảm thấy bản thân sớm muộn gì cũng sẽ vì cô mà giảm thọ vài năm.</p>
+
+        <p>Hai người quen nhau từ nhỏ, học chung trường suốt nhiều năm, thậm chí còn từng thề rằng sau này dù có lấy chồng cũng phải lấy ở gần nhau, để mỗi ngày đều có thể sang nhà đối phương ăn chực.</p>
+
+        <p>Khi ấy, cả hai đều nghĩ lời thề đó chỉ là một câu nói đùa.</p>
+
+        <p>Không ai ngờ rằng, nhiều năm sau, lời thề ấy lại được thực hiện theo một cách không thể tưởng tượng nổi.</p>
+
+        <p>Mà nguyên nhân chính là hai anh em nhà họ Lục.</p>
+
+        <p>Nhắc đến nhà họ Lục, cả Giang Thành gần như không ai không biết.</p>
+
+        <p>Gia tộc này đã tồn tại qua nhiều thế hệ, nắm giữ một tập đoàn kinh doanh khổng lồ với hoạt động trải rộng từ tài chính, bất động sản đến công nghệ. Gia thế hiển hách, quan hệ rộng rãi, tài sản nhiều đến mức người ngoài khó lòng tưởng tượng.</p>
+
+        <p>Người đứng đầu thế hệ trẻ của nhà họ Lục là Lục Cảnh Thâm, hai mươi sáu tuổi, hiện giữ chức tổng giám đốc tập đoàn. Anh nổi tiếng lạnh lùng, quyết đoán, làm việc không nể tình riêng. Trong những buổi tiệc của giới thượng lưu, chỉ cần anh xuất hiện, những người đang trò chuyện ồn ào cũng tự giác hạ thấp giọng.</p>
+
+        <p>Còn em trai anh, Lục Cảnh Dương, hai mươi hai tuổi, vừa hoàn thành chương trình học ở nước ngoài và trở về nước không lâu.</p>
+
+        <p>Nếu Lục Cảnh Thâm là người khiến người khác không dám đến gần, thì Lục Cảnh Dương lại là kiểu người khiến người ta muốn tránh xa ngay sau khi nói chuyện được năm phút.</p>
+
+        <p>Đặc biệt là đối với Hạ An Nhiên và Tống Khả Hân.</p>
+
+        <p>Bốn người từng học chung một trường trung học tư thục danh tiếng. Nói chính xác hơn, hai cô gái đã có một thời gian dài xem hai anh em nhà họ Lục là kẻ thù không đội trời chung.</p>
+
+        <p>Mà chuyện bắt đầu từ một chiếc bánh kem.</p>
+
+        <p>Năm lớp mười một, Hạ An Nhiên vô tình làm đổ cà phê lên bản báo cáo mà Lục Cảnh Thâm chuẩn bị cho cuộc thi học thuật. Cô đã xin lỗi, cũng đề nghị làm lại toàn bộ tài liệu, nhưng người đàn ông ấy chỉ nhìn cô bằng ánh mắt lạnh nhạt rồi nói đúng một câu:</p>
+
+        <p>“Lần sau làm việc gì, dùng đầu óc trước.”</p>
+
+        <p>Hạ An Nhiên tức đến mức ba ngày không ngủ ngon.</p>
+
+        <p>Còn Tống Khả Hân, trong một lần tranh luận với Lục Cảnh Dương, đã bị anh ta chọc đến mức suýt cầm nguyên hộp bánh kem úp lên đầu đối phương.</p>
+
+        <p>Kể từ đó, hai cô gái thống nhất một nguyên tắc sống.</p>
+
+        <p>Có thể không có bạn trai, nhưng tuyệt đối không được thích anh em nhà họ Lục.</p>
+
+        <p>Thế mà cuộc đời đôi khi rất thích trêu ngươi.</p>
+
+        <p>Buổi chiều hôm ấy, khi hai người vừa trở về căn hộ thuê gần trường, điện thoại của Hạ An Nhiên đột nhiên reo lên.</p>
+
+        <p>Người gọi là mẹ cô.</p>
+
+        <p>“An Nhiên à, tối nay con nhớ về nhà sớm nhé. Có chuyện quan trọng cần bàn.”</p>
+
+        <p>Hạ An Nhiên đang nằm dài trên ghế sô pha, nghe vậy liền uể oải hỏi:</p>
+
+        <p>“Chuyện gì vậy mẹ? Nếu là chuyện xem mắt thì con nói trước, con còn trẻ, chưa muốn kết hôn đâu.”</p>
+
+        <p>Đầu dây bên kia im lặng vài giây.</p>
+
+        <p>Sau đó, mẹ cô chậm rãi lên tiếng:</p>
+
+        <p>“Thật ra… nhà mình đã bàn chuyện hôn ước với nhà họ Lục từ trước rồi.”</p>
+
+        <p>Hạ An Nhiên bật dậy.</p>
+
+        <p>“Cái gì cơ?”</p>
+
+        <p>Tống Khả Hân đang ngồi ăn bánh bên cạnh cũng quay phắt đầu lại.</p>
+
+        <p>Mẹ Hạ tiếp tục nói, giọng điệu bình thản như thể đang thông báo hôm nay trời có mưa:</p>
+
+        <p>“Cuối tuần này, con sẽ gặp Lục Cảnh Thâm. Hai nhà muốn bàn chuyện kết hôn của hai đứa.”</p>
+
+        <p>Chiếc bánh quy trên tay Tống Khả Hân rơi thẳng xuống sàn.</p>
+
+        <p>Hạ An Nhiên cầm điện thoại, ngồi bất động gần mười giây.</p>
+
+        <p>Sau đó, cô hít sâu một hơi, hỏi bằng giọng run run:</p>
+
+        <p>“Mẹ… mẹ có biết người đó là ai không?”</p>
+
+        <p>“Đương nhiên mẹ biết. Cậu ấy rất xuất sắc, gia đình cũng tốt. Hai nhà vốn có quan hệ thân thiết, nếu hai đứa thành đôi thì chẳng phải rất tốt sao?”</p>
+
+        <p>“Nhưng con với anh ta không hợp nhau!”</p>
+
+        <p>“Chưa thử sao con biết không hợp?”</p>
+
+        <p>Hạ An Nhiên nghẹn lời.</p>
+
+        <p>Cô muốn nói rằng người đàn ông đó có thể khiến cô tức đến mức mất ngủ chỉ bằng một câu nói. Cô muốn nói rằng nếu phải sống chung với anh, chưa đến ba ngày cô đã có thể bị anh chọc tức đến mức xách vali bỏ nhà đi.</p>
+
+        <p>Nhưng cuối cùng, cô chỉ nghe thấy mẹ mình nói thêm:</p>
+
+        <p>“Còn một chuyện nữa. Nhà họ Lục cũng muốn bàn chuyện hôn ước của Cảnh Dương với Khả Hân.”</p>
+
+        <p>Căn phòng lập tức rơi vào im lặng.</p>
+
+        <p>Hạ An Nhiên từ từ quay đầu nhìn bạn thân.</p>
+
+        <p>Tống Khả Hân cũng nhìn cô.</p>
+
+        <p>Hai người nhìn nhau rất lâu, sau đó đồng thanh hét lên:</p>
+
+        <p>“TỚ KHÔNG LẤY NGƯỜI NHÀ HỌ LỤC!”</p>
+
+        <p>Tiếng hét vang khắp căn hộ.</p>
+
+        <p>Một lúc sau, Hạ An Nhiên ngồi bệt xuống sàn, ôm đầu tuyệt vọng.</p>
+
+        <p>“Khả Hân, hay chúng ta bỏ trốn đi.”</p>
+
+        <p>Tống Khả Hân suy nghĩ nghiêm túc vài giây rồi hỏi:</p>
+
+        <p>“Bỏ trốn đi đâu?”</p>
+
+        <p>“Đi thật xa. Đến một nơi không ai biết chúng ta là ai.”</p>
+
+        <p>“Tiền đâu?”</p>
+
+        <p>Hạ An Nhiên im lặng.</p>
+
+        <p>“Vé máy bay đâu?”</p>
+
+        <p>Hạ An Nhiên tiếp tục im lặng.</p>
+
+        <p>“Còn tiền thuê nhà, tiền ăn, tiền học phí?”</p>
+
+        <p>Hạ An Nhiên nằm vật xuống thảm.</p>
+
+        <p>“Cậu có thể đừng thực tế như thế được không?”</p>
+
+        <p>Tống Khả Hân thở dài, ngồi xuống bên cạnh cô.</p>
+
+        <p>Thật ra, cô cũng chẳng khá hơn Hạ An Nhiên là bao. Nếu phải kết hôn với Lục Cảnh Dương, người đàn ông có thể khiến cô tức điên chỉ bằng một nụ cười, cô thà ở nhà nuôi mười con mèo còn hơn.</p>
+
+        <p>Nhưng điều khiến hai người bất an nhất không phải là chuyện hôn ước.</p>
+
+        <p>Mà là thái độ của gia đình hai bên.</p>
+
+        <p>Tại sao những người lớn lại đột nhiên muốn hai cô kết hôn với anh em nhà họ Lục? Tại sao chuyện này dường như đã được sắp xếp từ lâu, trong khi chẳng ai từng hỏi ý kiến của hai cô?</p>
+
+        <p>Và quan trọng nhất…</p>
+
+        <p>Hai anh em nhà họ Lục có biết chuyện này không?</p>
+
+        <p>Đúng lúc ấy, điện thoại Hạ An Nhiên sáng lên.</p>
+
+        <p>Một tin nhắn từ số lạ xuất hiện trên màn hình.</p>
+
+        <p><strong>Lục Cảnh Thâm:</strong> Bảy giờ tối thứ Sáu. Nhà hàng Vân Đình. Đừng đến muộn.</p>
+
+        <p>Hạ An Nhiên nhìn dòng chữ lạnh lùng ấy, tức đến bật cười.</p>
+
+        <p>Ngay sau đó, một tin nhắn khác hiện lên trên điện thoại Tống Khả Hân.</p>
+
+        <p><strong>Lục Cảnh Dương:</strong> Nghe nói chúng ta sắp thành người một nhà rồi. Mong được cô chỉ giáo, vị hôn thê tương lai.</p>
+
+        <p>Tống Khả Hân chậm rãi đặt điện thoại xuống bàn.</p>
+
+        <p>Hạ An Nhiên quay sang nhìn cô.</p>
+
+        <p>“Khả Hân.”</p>
+
+        <p>“Ừ?”</p>
+
+        <p>“Chúng ta bỏ trốn thật nhé?”</p>
+
+        <p>Lần này, Tống Khả Hân không hỏi tiền đâu, cũng không hỏi đi đâu nữa.</p>
+
+        <p>Cô nghiêm túc gật đầu.</p>
+
+        <p>“Ừ. Nhưng trước khi đi, chúng ta phải gặp hai tên đó một lần.”</p>
+
+        <p>Hạ An Nhiên nhướng mày.</p>
+
+        <p>“Để làm gì?”</p>
+
+        <p>Tống Khả Hân mỉm cười, nụ cười dịu dàng đến mức khiến người ta lạnh sống lưng.</p>
+
+        <p>“Để nói cho họ biết rằng, muốn cưới chúng ta thì phải chuẩn bị tinh thần sống cả đời trong địa ngục.”</p>
+
+        <p>Ở đầu bên kia thành phố, trong văn phòng tầng cao nhất của tập đoàn Lục thị, Lục Cảnh Thâm nhìn tin nhắn vừa được gửi đến từ mẹ mình.</p>
+
+        <p>Bên cạnh cửa sổ, Lục Cảnh Dương đang nhàn nhã xoay chiếc điện thoại trong tay.</p>
+
+        <p>“Anh cả, nghe nói vị hôn thê của anh là cô nàng từng làm hỏng báo cáo của anh năm xưa?”</p>
+
+        <p>Lục Cảnh Thâm không ngẩng đầu.</p>
+
+        <p>“Cậu có ý kiến?”</p>
+
+        <p>“Không có.” Lục Cảnh Dương cười đầy thích thú. “Em chỉ tò mò không biết cô ấy có còn cái tính nóng nảy đó không.”</p>
+
+        <p>“Cậu nên lo cho bản thân mình trước đi.”</p>
+
+        <p>“Em á?” Lục Cảnh Dương nhún vai. “Tống Khả Hân thích gây chuyện, em thích xem náo nhiệt. Chẳng phải rất xứng đôi sao?”</p>
+
+        <p>Lục Cảnh Thâm cuối cùng cũng ngẩng đầu nhìn em trai.</p>
+
+        <p>“Cảnh Dương.”</p>
+
+        <p>“Vâng?”</p>
+
+        <p>“Đừng để mọi chuyện vượt khỏi tầm kiểm soát.”</p>
+
+        <p>Lục Cảnh Dương khựng lại một thoáng, rồi nở nụ cười bí hiểm.</p>
+
+        <p>“Anh yên tâm. Em biết mình đang làm gì.”</p>
+
+        <p>Ngoài cửa sổ, ánh hoàng hôn dần buông xuống thành phố.</p>
+
+        <p>Không ai biết rằng, cuộc hôn nhân tưởng chừng được sắp đặt vì lợi ích của hai gia tộc ấy thực chất còn che giấu một bí mật khác.</p>
+
+        <p>Một bí mật có liên quan đến lời hứa của thế hệ trước.</p>
+
+        <p>Và cả lý do thật sự khiến hai anh em nhà họ Lục đồng ý kết hôn với hai cô gái mà họ từng quen biết suốt nhiều năm.</p>
+
+        <div class="end-chapter">— Hết chương 1 — 🌿</div>
+    </article>
+
+    <div style="text-align:center;margin-top:25px">
+        <button class="back" onclick="showPage('details')">
+            ← Trở về mục lục
+        </button>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    🍃 Quả táo đi ngủ · Một góc nhỏ dành cho những điều dễ thương 🍃
+</footer>
+
+<script>
+function showPage(pageId) {
+    document.querySelectorAll('.hero, .page').forEach(function(page) {
+        page.style.display = 'none';
+        page.classList.remove('active');
+    });
+
+    if (pageId === 'home') {
+        document.querySelector('.hero').style.display = 'block';
+    } else {
+        const page = document.getElementById(pageId);
+        if (page) {
+            page.style.display = 'block';
+            page.classList.add('active');
+        }
+    }
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
